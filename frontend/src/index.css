@@ -1,0 +1,33 @@
+:root {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --ink: #16181d;
+  --ink-soft: #5b6270;
+  --ink-faint: #8a92a0;
+  --edge: #e4e6ea;
+  --accent: #1f5fd8;
+
+  --term-bg: #15171c;
+  --term-ink: #d6d9e0;
+  --working: #3cc7d9;
+  --episodic: #c77dd8;
+  --semantic: #5fc47e;
+  --procedural: #d9b23c;
+
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+code, pre {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+}

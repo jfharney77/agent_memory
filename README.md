@@ -101,6 +101,29 @@ database.
 5. **`05_consolidation.py`** — six sessions, none of which says "this user
    keeps confusing sign conventions", consolidated into a fact that does.
 
+## The web app
+
+Same five demos, launched by a button, output streamed into the page as it is
+produced.
+
+```bash
+./start.sh        # then open http://localhost:5180
+./stop.sh
+```
+
+The demos are run as subprocesses and their stdout is piped to the browser over
+SSE, ANSI codes intact — the page parses them back into the same colour coding
+the terminal uses, so what you see in the browser is exactly what the terminal
+shows. A demo that hangs cannot take the server with it, and Stop kills the
+subprocess rather than just hiding the output.
+
+The header reports whether Ollama is actually reachable and whether both models
+are pulled, since that is the only way these demos can fail for reasons that
+have nothing to do with memory.
+
+Ports are pinned: backend 8077, frontend 5180. Both are deliberately off the
+defaults, which tend to be occupied.
+
 ## The REPL
 
 ```bash
@@ -136,8 +159,13 @@ memory_lab/
   consolidate.py  episodic -> semantic
   runtime.py      opens the two databases
   cli.py          the REPL
+  server.py       FastAPI: lists the demos, runs one, streams its stdout
   display.py      ANSI formatting
 demo/             the five scripted narratives
+frontend/         React app: a button per demo, output streamed in below it
+  src/ansi.js     turns the demos' terminal colours back into spans
+  src/Output.jsx  the streaming log panel
+start.sh          runs both halves
 ```
 
 ## Knobs worth turning
